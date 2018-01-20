@@ -1,0 +1,1 @@
+insert into products(name, description, price, available, date_created) VALUES ('pencil', 'pencil', 0.5, true, CURRENT_TIMESTAMP());

@@ -1,15 +1,28 @@
 package com.cen.server.entity;
 
-import java.io.Serializable;
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-public class Product implements Serializable{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.util.Date;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity(name = "products")
+public class Product{
+
+    @Id
+    @GeneratedValue
+    @Column(name = "product_id")
     private Integer id;
     private String name;
     private String description;
     private Double price;
     private Boolean available;
-    private LocalDate dateCreated;
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private Date dateCreated;
 
     public Integer getId() {
         return id;
@@ -55,11 +68,11 @@ public class Product implements Serializable{
         return available;
     }
 
-    public LocalDate getDateCreated() {
+    public Date getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(LocalDate dateCreated) {
+    public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
 }
