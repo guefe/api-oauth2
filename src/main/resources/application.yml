@@ -11,8 +11,3 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
-#  jpa:
-#    show-sql: true
-
-#  jackson:
-#    date-format: org.codehaus.jackson.map.util.ISO8601DateFormat

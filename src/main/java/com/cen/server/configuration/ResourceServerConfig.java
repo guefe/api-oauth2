@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private String[] entryPoints = {
-                "/v2/api-docs/","/configuration/**", "/swagger**", "/webjars/**", "/v2/api-docs/**", "/h2/**"
+                "/configuration/**", "/swagger**", "/webjars/**", "/v2/api-docs/**", "/api/h2/**"
             };
 
     @Override

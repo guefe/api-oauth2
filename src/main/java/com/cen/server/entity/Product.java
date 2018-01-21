@@ -10,19 +10,19 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Entity(name = "products")
+@Entity(name = "product")
 public class Product{
 
     @Id
     @GeneratedValue
-    @Column(name = "product_id")
+    @Column(name = "id")
     private Integer id;
     private String name;
     private String description;
     private Double price;
     private Boolean available;
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date dateCreated;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date creationDate;
 
     public Integer getId() {
         return id;
@@ -68,11 +68,15 @@ public class Product{
         return available;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Boolean isEmpty(){
+        return id == null && name == null && description == null && price == null && available == null && creationDate == null;
     }
 }
