@@ -20,20 +20,9 @@ public class SwaggerConfig {
 
     @Bean
     public Docket api() {
-        //Adding Header Authorization header
-        List<Parameter> aParameters = new ArrayList<>();
-        aParameters.add(new ParameterBuilder()
-                .name("Authorization")
-                .description("Bearer Token")
-                .modelRef(new ModelRef("string"))
-                .defaultValue("Bearer [replace with token]")
-                .parameterType("header")
-                .required(false)
-                .build());
 
         return new Docket(DocumentationType.SWAGGER_2).select()
                 .apis(RequestHandlerSelectors.basePackage("com.cen"))
-                .paths(PathSelectors.any()).build()
-                .globalOperationParameters(aParameters);
+                .paths(PathSelectors.any()).build();
     }
 }
