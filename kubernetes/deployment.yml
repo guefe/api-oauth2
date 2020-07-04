@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-api
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: product-api
+      labels:
+        app: product-api
+    spec:
+      containers:
+        - name: product-api
+          image: cestevez/product-api
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: product-api
