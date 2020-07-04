@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findProducts(Product filter) {
-        log.debug("Retrieving products");
+        log.info("Retrieving products");
         if (filter != null && !filter.isEmpty()) {
             return productRepository.findAll(Example.of(filter));
         } else {
@@ -31,13 +31,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<Product> findProduct(Integer id) {
-        log.debug("Retrieving product with id: " + id);
+        log.info("Retrieving product with id: " + id);
         return productRepository.findById(id);
     }
 
     @Override
     public void updateProduct(Product product) {
-        log.debug("updating");
+        log.info("updating");
         this.productRepository.save(product);
     }
 
@@ -45,14 +45,14 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Integer id) {
         this.productRepository.deleteById(id);
         this.productRepository.getOne(id);
-        log.debug("Deleted product with id: {}", id);
+        log.info("Deleted product with id: {}", id);
     }
 
     @Override
     public Product createProduct(Product product) {
         product.setCreationDate(new Date());
         Product newProduct = this.productRepository.save(product);
-        log.debug("Inserted new product with id: " + newProduct.getId());
+        log.info("Inserted new product with id: " + newProduct.getId());
         return newProduct;
     }
 }

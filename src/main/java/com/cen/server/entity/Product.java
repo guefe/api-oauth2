@@ -1,12 +1,10 @@
 package com.cen.server.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -14,7 +12,7 @@ import java.util.Date;
 public class Product{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     private String name;
@@ -76,6 +74,7 @@ public class Product{
         this.creationDate = creationDate;
     }
 
+    @JsonIgnore
     public Boolean isEmpty(){
         return id == null && name == null && description == null && price == null && available == null && creationDate == null;
     }

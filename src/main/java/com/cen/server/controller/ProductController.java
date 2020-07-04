@@ -3,6 +3,7 @@ package com.cen.server.controller;
 import com.cen.server.entity.Product;
 import com.cen.server.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findProducts(@ModelAttribute Product filter){
 
         List<Product> products = productService.findProducts(filter);
@@ -26,7 +27,7 @@ public class ProductController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getPoduct(@PathVariable("id") Integer id){
 
         Optional<Product> product = productService.findProduct(id);
@@ -36,7 +37,7 @@ public class ProductController {
         return ResponseEntity.ok(product.get());
    }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createProduct(@RequestBody Product product){
 
         Product newProduct = this.productService.createProduct(product);
